@@ -1,8 +1,8 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Phone, EnvelopeSimple, MapPin } from "@phosphor-icons/react";
 
+// Phone & contact numbers (without + or spaces)
 const phone = "919328695463";
 
 const contactCards = [
@@ -49,18 +49,17 @@ const ContactCard = ({ card }) => {
   } = card;
 
   const handleContactClick = async () => {
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(
-      navigator.userAgent
-    );
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     if (mobileShare && isMobile && navigator.share) {
       try {
         await navigator.share({
           title: "Contact Tanishq",
-          text: "Contact Tanishq for reservations and inquiries:",
+          text: "Connect with Tanishq for inquiries & reservations:",
           url: `https://wa.me/${phone}`,
         });
       } catch (error) {
+        // If the user cancelled the share drawer, avoid navigation
         if (error.name !== "AbortError") {
           window.location.href = href;
         }
@@ -85,7 +84,6 @@ const ContactCard = ({ card }) => {
 
   return (
     <div className="flex flex-col items-center rounded-[24px] border-2 border-[#EFE3D0] px-6 pb-6 pt-6 text-center">
-
       {/* ICON */}
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#F3E0C0]">
         <Icon size={22} weight={iconWeight} className="text-[#5E3A17]" />
@@ -133,7 +131,6 @@ const GetInTouch = () => {
   return (
     <section className="bg-[#FFFAF2] px-5 py-14 sm:px-8 lg:pb-20 lg:pt-[70px]">
       <div className="mx-auto w-full max-w-[1400px]">
-
         {/* SECTION HEADER */}
         <div className="mx-auto max-w-[760px] text-center">
           <h2 className="font-['Fraunces'] text-[36px] font-normal leading-[1.1] text-[#5E3A17] sm:text-[46px] lg:text-[55px]">
@@ -152,7 +149,6 @@ const GetInTouch = () => {
             <ContactCard key={card.title} card={card} />
           ))}
         </div>
-
       </div>
     </section>
   );
